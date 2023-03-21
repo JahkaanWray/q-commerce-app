@@ -1,0 +1,16 @@
+.Map{
+    width: 50%;
+    height: 100vh;
+    background: red;
+}
+.map-container{
+    width:50%;
+    height: 100vh;
+}
+
+.Marker{
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background: blue;
+}
