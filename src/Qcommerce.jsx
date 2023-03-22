@@ -4,10 +4,12 @@ import ScheduleView from './ScheduleView';
 import { useEffect, useState } from 'react';
 import MapContainer from './Map';
 
+console.log(process.env.REACT_APP_GORILLAS_API_KEY);
+
 export default function Qcommerce(){
 
     const [time,setTime] = useState(0);
-    const [playbackSpeed,setPlaybackSpeed] = useState(6000);
+    const [playbackSpeed,setPlaybackSpeed] = useState(0);
 
     const [shifts, setShifts] = useState(defaultShifts);
     const [orderData, setOrderData] = useState(null);
@@ -90,19 +92,20 @@ async function loadOrders(){
     myHeaders.append("sec-fetch-mode", "cors");
     myHeaders.append("sec-fetch-site", "same-site");
     myHeaders.append("user-agent", "Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.188 Safari/537.36 CrKey/1.54.250320 Edg/104.0.5112.102");
-    myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhcHBsaWNhdGlvbiIsImlzcyI6ImdvcmlsbGFzLW1vbm9saXRoIiwidWlkIjoiZ1FKRDEyUjVRbVd0Sy16akVFZ0xMdyIsInRhZ3MiOlsiSU5WRU5UT1JZX0VESVRfUVVBTlRJVFkiLCJVU0VSX0VESVQiLCJSSURFUl9FRElUIiwiSU5WRU5UT1JZX0xJU1RfUFVSQ0hBU0VfT1JERVJTIiwiUklERVJfTElTVCIsIk9SREVSX0NPTkZJUk0iLCJJTlZFTlRPUllfTElTVF9ERUxJVkVSWV9OT1RFUyIsIklOVkVOVE9SWV9FRElUX1pPTkUiLCJURUFNX0RFTEVURSIsIlJJREVSX0RFTEVURSIsIklOVkVOVE9SWV9ERUxJVkVSX0RFTElWRVJZIiwiUFJPTU9fTElTVCIsIklOVkVOVE9SWV9SRVBMRU5JU0hfREVMSVZFUlkiLCJUSUNLRVRfTElTVCIsIklOVkVOVE9SWV9DT1VOVF9ERUxJVkVSWSIsIlRFQU1fRURJVCIsIklOVkVOVE9SWV9WSUVXX0RFTElWRVJZX05PVEUiLCJURUFNX0xJU1QiLCJVU0VSX0NSRUFURSIsIlZFTkRPUlNfTElTVCIsIk9SREVSX0NBTkNFTCIsIklOVkVOVE9SWV9WSUVXX1BVUkNIQVNFX09SREVSIiwiT1JERVJfTElTVCIsIlVTRVJfTElTVCIsIklOVkVOVE9SWV9FRElUIiwiT1JERVJfQ09NUExFVEUiLCJJTlZFTlRPUllfTElTVCIsIk9SREVSX0FTU0lHTiIsIk9SREVSX0VESVQiLCJJTlZFTlRPUllfUkVDRUlWRV9ERUxJVkVSWSIsIlBPUlRBTF9VU0VSIl0sImFwaVR5cGUiOiJQT1JUQUwiLCJpYXQiOjE2NjE5MTEwNzcsInVzZXJJZCI6IjYyM2RmMTc0YjZlMjk4MzI5NDM1ODlmYiIsInN0b3JlSWQiOiI2MDRhMmY1ZDE3YmUwNTBhMmZiYmY5NWEiLCJyb2xlcyI6WyJVU0VSIiwiQVBJX1VTRVIiXSwidGVuYW50IjoiWnpSbUJnazNTSnFBRUZadzFQNWNkQSJ9.i4jLW0mG5OOld8W7oBB-XGkFlhKayNi0GPIbZxT54qyxRZc94TVZY9Pu6mpADiF2\n");
+    myHeaders.append("Authorization", "Bearer " + process.env.REACT_APP_GORILLAS_API_KEY);
 
     var raw = JSON.stringify({
         "pageNumber": 1,
         "recordsPerPage": 2000,
         "storeIds": [
-            "604a2f5d17be050a2fbbf95a"
+            "604a2f5d17be050a2fbbf95a",
+            "640b0eed922fff1dfb23cf86"
         ],
         "orderStatus": [
             "COMPLETE"
         ],
-        "createdAfter": "2021-06-31T22:00:00.000Z",
-        "createdBefore": "2021-06-31T23:59:59.000Z",
+        "createdAfter": "2023-03-20T22:00:00.000Z",
+        "createdBefore": "2023-03-20T23:59:59.000Z",
         "pickerUids": [
             "Ol67Nu-CStCW6f9zEMsjPw"
         ]

@@ -25,11 +25,11 @@ export default function MapContainer({orderData, time}){
             var coords = element.dispatch.dropOff.address.coordinates;
             var createdOn = element.createdOn;
             var completedOn = element.completedOn;
-            if (createdOn < 1625122800000 + time && completedOn > 1625122800000 + time){
+            //if (createdOn < 1625122800000 + time && completedOn > 1625122800000 + time){
                 markers.push(<Marker
                     position={{lat: coords.lat,lng: coords.lon}}
                 ></Marker>);
-            }
+            //}
 
             /*markers.push(<Marker
                 position={{lat: 51.468,lng: -0.09}}
