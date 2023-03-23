@@ -4,8 +4,6 @@ import ScheduleView from './ScheduleView';
 import { useEffect, useState } from 'react';
 import MapContainer from './Map';
 
-console.log(process.env.REACT_APP_GORILLAS_API_KEY);
-
 export default function Qcommerce(){
 
     const [time,setTime] = useState(0);
@@ -18,8 +16,12 @@ export default function Qcommerce(){
     useEffect(() => {
         const loadData = async () => {
             const result = await loadOrders();
-            console.log("Data fetch on mount: " + result);
+            console.log("Data fetch on mount: ");
+            console.log(result);
             setOrderData(result);
+            console.log(result.items);
+            console.log(result.items.length);
+            console.log(simulate(result,[]));
         };
         //console.log(orderData);
         loadData();
@@ -33,9 +35,9 @@ export default function Qcommerce(){
             //console.log(time);
             //console.log(playbackSpeed);
             var s = playbackSpeed;
-            console.log("Playback Speed: " + s*10);
+            //console.log("Playback Speed: " + s*10);
             setTime((time) => {
-                console.log(s);
+                //console.log(s);
                 //console.log("Time: " + time);
                 //console.log("Playback Speed: " + s);
                 //console.log(time + 1);
@@ -104,8 +106,8 @@ async function loadOrders(){
         "orderStatus": [
             "COMPLETE"
         ],
-        "createdAfter": "2023-03-20T22:00:00.000Z",
-        "createdBefore": "2023-03-20T23:59:59.000Z",
+        "createdAfter": "2022-03-20T22:00:00.000Z",
+        "createdBefore": "2022-03-20T23:59:59.000Z",
         "pickerUids": [
             "Ol67Nu-CStCW6f9zEMsjPw"
         ]
@@ -127,8 +129,53 @@ async function loadOrders(){
     return data;
 }
 
-function simulate(){
+function simulate(initialOrderData,shifts){
+    let finalOrderData = [];
 
+    let ordersRemaining = initialOrderData.items.length;
+
+    initialOrderData.items.forEach((item)=>{
+        finalOrderData.push({
+            createdOn: item.createdOn,
+            processingOn: null,
+            confirmedOn: null,
+            assignedOn: null,
+            startedOn: null,
+            completedOn: null,
+            coordinates: {
+                lat: item.dispatch.dropOff.address.coordinates.lat,
+                lng: item.dispatch.dropOff.address.coordinates.lon
+            },
+            picker: null,
+            rider: null
+        })
+    })
+
+
+    return finalOrderData;
+    let i = 0;
+
+    let time = 0;
+    let newOrders = [];
+    let processingOrders = [];
+    let readyOrders = [];
+    let assignedOrders = [];
+    let dispatchedOrders = [];
+
+    let nextPickerReady = [];
+    let nextRiderBack = [];
+    let ordersCompletedOn = [];
+
+    let readyRiders = [];
+    let readyPickers = 2;
+
+    const speed = 10*1000/(60*60*1000);
+
+    /*while (ordersRemaining > 0){
+        let nextEventTime = Infinity;
+
+        //if (finalOrderData)
+    }*/
 }
 
 
