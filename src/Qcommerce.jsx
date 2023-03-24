@@ -1,3 +1,4 @@
+import React from 'react';
 import './Qcommerce.css';
 import Map from './Map';
 import ScheduleView from './ScheduleView';

@@ -1,3 +1,4 @@
+import React from 'react';
 import './Map.css';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
