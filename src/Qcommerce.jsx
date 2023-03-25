@@ -23,7 +23,8 @@ export default function Qcommerce(){
             setOrderData(result);
             //console.log(result.items);
             //console.log(result.items.length);
-            console.log(simulate(result,[{
+            
+            let times = simulate(result,[{
                 startTime: 1679299200000,
                 endTime: 1679356800000
             },
@@ -46,7 +47,24 @@ export default function Qcommerce(){
             {
                 startTime: 1679299200000,
                 endTime: 1679356800000
-            }]));
+            },
+            {
+                startTime: 1679299200000,
+                endTime: 1679356800000
+            },
+            {
+                startTime: 1679299200000,
+                endTime: 1679356800000
+            }]);
+
+            let sum = 0;
+
+            times.forEach((order)=>{
+                sum += order.completedOn - order.createdOn;
+            })
+            let avg = sum / (times.length*60*1000);
+            console.log(avg);
+
         };
         ////console.log(orderData);
         loadData();
